@@ -1,0 +1,34 @@
+.footer{
+    height: 143px;
+    background: #CBD2D3;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 136px;
+    padding-right: 96px;
+
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 15px;
+    color: #000000;
+
+
+}
+.img_footer{
+    vertical-align: -7px;
+    margin-right: 10px;
+}
+.left{
+    min-height: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.right{
+    min-height: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}

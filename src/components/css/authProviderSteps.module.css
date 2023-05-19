@@ -1,0 +1,104 @@
+.authProviderStepsOne{
+    height: 283px;
+    width: 333px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    margin-top: 42px;
+    margin-bottom: 30px;
+
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+}
+.text{
+    margin-top: 35px;
+}
+.text_two{
+    margin-bottom: 63px;
+}
+.inputs_one{
+    min-width: 65%;
+    width: 333px;
+    height: 62px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    
+}
+
+/* Step 2 */
+.authProviderStepsTwo{
+    height: 283px;
+    width: 365px;
+    display: flex;
+    flex-direction: column;
+
+    margin-top: 42px;
+    margin-bottom: 30px;
+
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 15px;
+
+}
+.inputs_two{
+    min-width: 100%;
+    display: flex;
+}
+.checkbox_brand{
+    margin-top: 15px;
+}
+.check_brand{
+    margin-left: 0;
+}
+/* Step 3 */
+.authProviderStepsOther{
+    height: 283px;
+    width: 409px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    margin-top: 42px;
+    margin-bottom: 30px;
+
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+}
+.border_dot{
+    box-sizing: border-box;
+    border: 1px dashed #000000;
+    padding-top: 7px;
+    padding-left: 12px;
+
+
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 15px;
+
+}
+.check_codex{
+    margin-left: -50%;
+    margin-top: 20px;
+
+    font-weight: 300;
+    font-size: 10px;
+    line-height: 12px;
+
+}
+.label_check{
+    margin-left: 10px;
+
+    display: inline-block;
+    vertical-align: middle;
+}
+.check{
+    display: inline-block;
+    vertical-align: middle;
+}
+.color_blue{
+    color: #00889A;
+}

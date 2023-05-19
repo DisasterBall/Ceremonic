@@ -1,0 +1,9 @@
+.mySelectCity__control{
+    border: 1px solid #57BAC0 !important;
+    border-radius: 5px !important;
+}
+.mySelectCity-container{
+    max-width: 208px !important; 
+    max-height: 39px !important; 
+    margin: 0px 0px 40px 0px!important;
+}

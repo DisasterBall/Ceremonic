@@ -1,0 +1,18 @@
+.input_primary{
+    color: #979797;
+    border: 1px solid #979797;
+    max-width: 137px;
+    max-height: 32px;
+}
+.input_without-border{
+    border: 0;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: #979797;
+
+    border-bottom: 1px solid #979797;
+
+}

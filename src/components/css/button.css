@@ -1,0 +1,62 @@
+.button_primary {
+    border: 0;
+    color: black;
+    background: transparent;
+    box-sizing: border-box;
+    padding: 0;
+}
+.button_primary:hover{
+	color: #00889A;
+    transition: all 2ms;
+	cursor: pointer;
+}
+
+.button_secondary{
+    color: #00889A;
+    border: 0;
+    background: transparent;
+    box-sizing: border-box;
+    padding: 0;
+}
+.button_secondary:hover{
+	color: black;
+    transition: all 2ms;
+    cursor: pointer;
+}
+.button_with-background{
+    color: #ffffff;
+    border: 0;
+    box-sizing: border-box;
+    background: #57BAC0;
+
+}
+.button_with-background:hover{
+    transition: all 2ms;
+    cursor: pointer;
+    background: #2DCCD7;
+}
+.button_with-shadow{
+    box-sizing: border-box;
+    border: 0;
+    background: #57BAC0;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+}
+.button_with-shadow:hover{
+    transition: all 2ms;
+    cursor: pointer;
+    background: #2DCCD7;
+}
+.button_with-border{
+    box-sizing: border-box;
+    border: 1px solid #79747E;
+    border-radius: 100px;
+    color: #00889A;
+    background: transparent;
+}
+.button_with-border:hover{
+    transition: all 2ms;
+    cursor: pointer;
+    background: #57BAC0;
+    color: #DFFDFF;
+}

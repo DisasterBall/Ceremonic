@@ -1,0 +1,296 @@
+.index-page{
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 15px;
+
+}
+.search{
+    height: 397px;
+    width: 100vw;
+    box-sizing: border-box;
+    position: relative;
+    border-bottom: 0.254px solid #979797;;
+    background: linear-gradient(180deg, rgba(84,219,228,0.9289916650253851) 0%, rgba(255,255,255,1) 56%);
+
+    padding-top: 4%;
+    padding-left: 6vw;
+}
+.search::before{
+    content: '';
+    position: absolute;
+    background: url(../../assets/image/Page_IndexPage/search.png) no-repeat;
+    background-size: cover;
+    background-position: 50%;
+    clip-path: polygon(12% 0, 100% 0%, 100% 100%, 0% 100%);
+    
+    width: 60%;
+    height: 100%;
+
+    top: 0;
+    right: 0;
+}
+
+.search-text-first{
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+    margin-bottom: 40px;
+
+}
+.search-text-second{
+    font-weight: 300;
+    font-size: 12px;
+    line-height: 15px;
+    color: #000000;
+    margin-bottom: 30px;
+}
+.buttons-search{
+    display: flex;
+    min-width: 400px;
+    min-height: 30px;
+}
+.button-services{
+    font-weight: 400;
+    font-size: 10px;
+    line-height: 12px;
+
+    color: #49454F;
+
+    margin-top: 40px;
+    margin-left: 19.3vw;
+
+}
+.buttons-search__what{
+    position: relative;
+}
+.buttons-search__what img{
+    position: absolute;
+    top: 8px;
+    left: 10px;
+}
+.buttons-search__where{
+    position: relative;
+}
+.buttons-search__where img{
+    position: absolute;
+    top: 4px;
+    right: 8px;
+}
+.function-ceremonic{
+    display: flex;
+    margin-top: 58px;
+    margin-left: 60px;
+    margin-right: 60px;
+    margin-bottom: 118px;
+    font-weight: 500;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    text-align: center;
+
+}
+.function-ceremonic__tools{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+
+    border-radius: 5px;
+    box-shadow: 0px 4px 4px 2px rgba(0, 0, 0, 0.25);
+
+    width: 225px;
+    height: 138px;
+    box-sizing: content-box;
+
+    padding-left: 11px;
+    padding-right: 11px;
+    padding-top: 11px;
+}
+.function-ceremonic__icon{
+    width: 135px;
+
+}
+.pre-steps-road{
+    text-align: center;
+
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 20px;
+    margin-bottom: 40px;
+}
+.steps-road{
+    min-height: 350px;
+    display: flex;
+    position: relative;
+    background: url(../../assets/image/Page_IndexPage/steps-road.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+
+    font-size: 14px;
+    line-height: 17px;
+}
+.steps-road-step{
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+}
+.steps-road-step__caption{
+    font-weight: 500;
+}
+.steps-road-step__step-1{
+    margin-left: 15vw;
+    margin-top: 2vw;
+
+}
+.steps-road-step__step-1_buttons Button{
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+.steps-road-step__step-1_buttons{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 29px;
+}
+.steps-road-step__step-2{
+    margin-left: 3.5vw;
+    margin-top: 0vw;
+
+    position: relative;
+ 
+}
+.steps-road-step__step-2_img{
+    position: absolute;
+    top: 80px;
+    left: 0px;
+}
+.steps-road-step__step-3{
+    justify-content: center;
+    margin-top: 3vw;
+    margin-left: 1.5vw;
+    position: relative;
+}
+.steps-road-step__step-3_img_1{
+    position: absolute;
+    bottom: 0px;
+    left: -150px;
+    z-index: 2;
+}
+.steps-road-step__step-3_img_2{
+    position: absolute;
+    bottom: -21px;
+    right: -75px;
+}
+.steps-road-step__step-4{
+    margin-top: 0vw;
+    margin-left: 5.2vw;
+    text-align: center;
+    position: relative;
+}
+.steps-road-step__step-4_img_1{
+    position: absolute;
+    bottom: 45px;
+    left: 6px;
+    z-index: 2;
+}
+.steps-road-step__step-4_img_2{
+    position: absolute;
+    bottom: 157px;
+    right: -4px;
+}
+.steps-road-step__step-5{
+    text-align: center;
+    position: relative;
+
+    margin-top: 4vw;
+    margin-left: 3vw;
+}
+.steps-road-step__step-5_img{
+    position: absolute;
+    bottom: -15px;
+    left: 0px;
+}
+.step-6{
+    text-align: center;
+    margin-top: 61px;
+
+    font-size: 14px;
+    line-height: 17px;
+}
+.step-6__p{
+    font-weight: 500;
+}
+.step-6__img{
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 47px;
+    margin-left: 18vw;
+    margin-right: 18vw;
+    justify-content: space-between;
+}
+.index-page__pre-footer{
+    min-height: 1084px;
+    border-top: 0.254px solid #979797;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.42) 1.04%, rgba(45, 204, 215, 0.42) 62.81%),
+    url('../../assets/image/Page_IndexPage/pre-footer.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: left;
+    clip-path: inset(9% 0 0 0);
+
+
+}
+.index-page__pre-footer-caption{
+    text-align: center;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 20px;
+    margin-top: 100px;
+
+}
+.index-page__pre-footer-wrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.index-page__pre-footer_function{
+    display: flex;
+    flex-wrap: wrap;
+    background: #F4FEFF;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 15px;
+    width: 490px;
+    height: 138px;
+    margin-bottom: 48px;
+
+    font-size: 13px;
+    line-height: 14px;
+
+    box-sizing: border-box;
+    padding-left: 23px;
+    padding-top: 10px;
+
+}
+.index-page__pre-footer_numbers{
+
+    font-weight: 900;
+    font-size: 36px;
+    line-height: 44px;
+    color: #66969C;
+
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+}
+.index-page__pre-footer_text-first{
+    font-size: 16px;
+    line-height: 20px;
+    margin-left: 15px;
+}
+.index-page__pre-footer_main-text{
+    margin-left: 8px;
+    margin-top: -14px;
+}
