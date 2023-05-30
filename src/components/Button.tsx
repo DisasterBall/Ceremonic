@@ -50,6 +50,9 @@ const Button: FC<ButtonProps> = ({
     if(kind === 'button_with-border'){
         rootClasses = ['button_with-border']
     }
+    if(kind === 'button_with-background-radius'){
+        rootClasses = ['button_with-background-radius']
+    }
 
     return (
         <button {...props} 

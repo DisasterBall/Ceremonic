@@ -60,3 +60,15 @@
     background: #57BAC0;
     color: #DFFDFF;
 }
+.button_with-background-radius{
+    color: #ffffff;
+    border: 0;
+    box-sizing: border-box;
+    background: #00889A;
+}
+.button_with-background-radius:hover{
+    transition: all 2ms;
+    cursor: pointer;
+    background: #57BAC0;
+    color: #DFFDFF;
+}
