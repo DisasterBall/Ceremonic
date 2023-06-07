@@ -11,7 +11,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    min-height: 710px;
+    min-height: 660px;
     width: 520px;
     border: 1px solid #D9D9D9;
     border-radius: 10px;
@@ -25,11 +25,11 @@
 }
 .auth__registration-inputs{
     min-width: 65%;
-    height: 185px;
+    max-width: 65%;
+    height: 218px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    margin-bottom: 33px;
 
 }
 .auth__caption{
@@ -73,6 +73,12 @@
     margin-bottom: 30px;
 }
 .auth__registration-inputs-login{
-    height: 70px;
+    max-height: 70px;
     margin-bottom: 43px;
+}
+.button_wrapper{
+    width: 100%;
+    margin-top: 33px;
+    display: flex;
+    justify-content: center;
 }

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 import styles from './css/authProviderSteps.module.css'
 
 import MyGoogleLogin from './MyGoogleLogin';
@@ -7,6 +7,7 @@ import MySelect from './MySelect';
 
 import { useAppDispatch, useAppSelector } from '../hook';
 import { addProvider } from '../store/authProviderSlice';
+import Button from './Button';
 
 type ChildProps = {
     currentStep: number;
@@ -30,79 +31,171 @@ const AuthProviderSteps: React.FC<ChildProps> = ({currentStep, setCurrentStep, i
     const serviceName: string = ''
     const tokenID: string = ''
 
+    const [isValidEmail, setIsValidEmail] = useState<boolean>(false)
+    const [errorMessageEmail, setErrorMessageEmail] = useState<string>('')
+
+    const [isValidPassword, setIsValidPassword] = useState<boolean>(false)
+    const [errorMessagePassword, setErrorMessagePassword] = useState<string>('')
+
+    const currentService = useAppSelector(state => state.authProviderInfo.authProvider.serviceName)
+    const [isValidService, setIsValidService] = useState<boolean>(false)
+
     useEffect(() => {
         if(currentStep === 3){
             dispatch(addProvider({firstName, lastName, email, password, brandName, serviceName, tokenID}))
-        }    
-    }, [currentStep]);
+        }
 
+        if(currentService !== ''){
+            setIsValidService(true)
+        } else {
+            setIsValidService(false)
+        }  
+    }, [currentStep, currentService]);
+
+
+    const validateEmail = (email: string) => {
+        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/u
+        const ValidEmail = emailRegex.test(email)
+        const isMax: boolean = email.length <= 50
+
+        if (ValidEmail && isMax) {
+            setIsValidEmail(true)
+            setErrorMessageEmail('')
+        } else if (!isMax) {
+            setIsValidEmail(false)
+            setErrorMessageEmail(import.meta.env.VITE_VALIDATION_EMAIL_MAX)
+        } else {
+            setIsValidEmail(false)
+            setErrorMessageEmail(import.meta.env.VITE_VALIDATION_EMAIL_PATTERN)
+        }
+    }
+    
+      const handleEmailChange = (e: ChangeEvent<HTMLInputElement>) => {
+        const newEmail: string = e.target.value
+        setEmail(newEmail)
+        validateEmail(newEmail)
+    }
+
+    const validatePassword = (password: string) => {
+        const emailRegex = /^[^!"№;%:?*()_+\-=@#$%^&'`\\|/.,\sа-яА-Я]+$/u
+        const ValidPassword = emailRegex.test(password)
+        setIsValidPassword(ValidPassword)
+        const isMax: boolean = password.length <= 50
+        const isMin: boolean = password.length >= 6
+
+        if (ValidPassword && isMax && isMin) {
+            setIsValidPassword(true)
+            setErrorMessagePassword('')
+        } else if (!isMax) {
+            setIsValidPassword(false)
+            setErrorMessagePassword(import.meta.env.VITE_VALIDATION_PASSWORD_MAX)
+        } else if (!isMin) {
+            setIsValidPassword(false)
+            setErrorMessagePassword(import.meta.env.VITE_VALIDATION_PASSWORD_MIN)
+        }else {
+            setIsValidPassword(false)
+            setErrorMessagePassword(import.meta.env.VITE_VALIDATION_PASSWORD_PATTERN)
+        }
+    }
+    
+      const handlePasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
+        const newPassword: string = e.target.value
+        setPassword(newPassword)
+        validatePassword(newPassword)
+    }
 
     if(currentStep === 1)
     {
         return (
-          <div className={styles.authProviderStepsOne}>
-              <MyGoogleLogin setCurrentStep={setCurrentStep}/>
-      
-              <p className={styles.text}>
-                  або
-              </p>
-      
-              <p className={styles.text_two}>
-                  введіть електронну пошту та пароль
-              </p>
-      
-              <div className={styles.inputs_one}>
-                  <Input kind='input_without-border' type='email' placeholder='Email'
-                      value={email}
-                      onChange={e => setEmail(e.target.value)}/>
-                  <Input kind='input_without-border' type='password' placeholder='Пароль'
-                      value={password}
-                      onChange={e => setPassword(e.target.value)}/>
-              </div>
-      
-          </div>
+            <>
+                <div className={styles.authProviderStepsOne}>
+                    <MyGoogleLogin setCurrentStep={setCurrentStep}/>
+            
+                    <p className={styles.text}>
+                        або
+                    </p>
+            
+                    <p className={styles.text_two}>
+                        введіть електронну пошту та пароль
+                    </p>
+            
+                    <div className={styles.inputs_one}>
+                        <Input kind='input_without-border' type='email' placeholder='Email'
+                            value={email}
+                            onChange={e => handleEmailChange(e)}/>
+                        {!isValidEmail && <p style={{ color: 'red' }}>{errorMessageEmail}</p>}
+                        <Input kind='input_without-border' type='password' placeholder='Пароль'
+                            value={password}
+                            onChange={e => handlePasswordChange(e)}/>
+                        {!isValidPassword && <p style={{ color: 'red' }}>{errorMessagePassword}</p>}
+                    </div>
+            
+                </div>
+                <Button kind='button_with-shadow' color='#000000' width='208px' 
+                height='36px' borderRadius='5px'
+                fontSize='16px' fontWeight={500} lineHeight='20px' disabled={!(isValidEmail && isValidPassword)}
+                onClick={() => {
+                    if(currentStep === 1){ 
+                        if(typeof setCurrentStep === 'function') 
+                            setCurrentStep(2)
+                    }}}>
+                    Далі
+                </Button>
+            </>
         );
     }else if(currentStep === 2){
         return (
-            <div className={styles.authProviderStepsTwo}>
-                <p>
-                    Введіть ваше ім’я та прізвище.
-                </p>
+            <>
+                <div className={styles.authProviderStepsTwo}>
+                    <p>
+                        Введіть ваше ім’я та прізвище.
+                    </p>
 
-                <div className={styles.inputs_two}>
-                    <Input kind='input_without-border' placeholder='Iм’я' maxWidth='103px'
-                        value={firstName} margin='0px 25px 0px 0px'
-                        onChange={e => setFirstName(e.target.value)}/>
+                    <div className={styles.inputs_two}>
+                        <Input kind='input_without-border' placeholder='Iм’я' maxWidth='103px'
+                            value={firstName} margin='0px 25px 0px 0px'
+                            onChange={e => setFirstName(e.target.value)}/>
 
-                    <Input kind='input_without-border' placeholder='Прізвище' width='227px'
-                        value={lastName}
-                        onChange={e => setLastName(e.target.value)}/>
+                        <Input kind='input_without-border' placeholder='Прізвище' width='227px'
+                            value={lastName}
+                            onChange={e => setLastName(e.target.value)}/>
+                    </div>
+
+                    <p>
+                        Які послуги ви надаєте?
+                    </p>
+                    <MySelect />
+
+                    <p>
+                        Введіть назву вашого бренду.
+                    </p>
+                    <Input kind='input_without-border' placeholder='Назва'
+                        value={brandName}
+                        onChange={e => setBrandName(e.target.value)}/>
+
+                    <div className={styles.checkbox_brand}>
+                        <input type="checkbox" id="brand" className={styles.check_brand}/>
+                        <label htmlFor="brand">
+                            Використовувати ім’я та прізвище замість назви
+                        </label>
+                    </div>
+
+                    <p>
+                        Ця назва є вашим брендом. Вона буде заголовком на вашій сторінці.
+                    </p>
+
                 </div>
-
-                <p>
-                    Які послуги ви надаєте?
-                </p>
-                <MySelect />
-
-                <p>
-                    Введіть назву вашого бренду.
-                </p>
-                <Input kind='input_without-border' placeholder='Назва'
-                      value={brandName}
-                      onChange={e => setBrandName(e.target.value)}/>
-
-                <div className={styles.checkbox_brand}>
-                    <input type="checkbox" id="brand" className={styles.check_brand}/>
-                    <label htmlFor="brand">
-                        Використовувати ім’я та прізвище замість назви
-                    </label>
-                </div>
-
-                <p>
-                    Ця назва є вашим брендом. Вона буде заголовком на вашій сторінці.
-                </p>
-
-            </div>
+                <Button kind='button_with-shadow' color='#000000' width='208px' 
+                height='36px' borderRadius='5px'
+                fontSize='16px' fontWeight={500} lineHeight='20px' disabled={!(isValidService)}
+                onClick={() => {
+                    if(currentStep === 2){ 
+                        if(typeof setCurrentStep === 'function') 
+                            setCurrentStep(3)
+                    }}}>
+                    Далі
+                </Button>
+            </>
         );
     }else{
         return (

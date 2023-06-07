@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 import './css/authProvider.css'
 
 import {useLocation, useNavigate} from "react-router-dom";
@@ -47,6 +47,12 @@ const AuthProvider: React.FC = () => {
 
     const [currentStep, setCurrentStep] = useState<number>(1)
     const [isChecked, setIsChecked] = useState<boolean>(false)
+
+    const [isValidEmail, setIsValidEmail] = useState<boolean>(false)
+    const [errorMessageEmail, setErrorMessageEmail] = useState<string>('')
+
+    const [isValidPassword, setIsValidPassword] = useState<boolean>(false)
+    const [errorMessagePassword, setErrorMessagePassword] = useState<string>('')
 
     const navigate = useNavigate()
     const location = useLocation()
@@ -97,6 +103,57 @@ const AuthProvider: React.FC = () => {
 
     }
 
+    const validateEmail = (email: string) => {
+        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/u
+        const ValidEmail = emailRegex.test(email)
+        const isMax: boolean = email.length <= 50
+
+        if (ValidEmail && isMax) {
+            setIsValidEmail(true)
+            setErrorMessageEmail('')
+        } else if (!isMax) {
+            setIsValidEmail(false)
+            setErrorMessageEmail(import.meta.env.VITE_VALIDATION_EMAIL_MAX)
+        } else {
+            setIsValidEmail(false)
+            setErrorMessageEmail(import.meta.env.VITE_VALIDATION_EMAIL_PATTERN)
+        }
+    }
+    
+      const handleEmailChange = (e: ChangeEvent<HTMLInputElement>) => {
+        const newEmail: string = e.target.value
+        setEmail(newEmail)
+        validateEmail(newEmail)
+    }
+
+    const validatePassword = (password: string) => {
+        const emailRegex = /^[^!"№;%:?*()_+\-=@#$%^&'`\\|/.,\sа-яА-Я]+$/u
+        const ValidPassword = emailRegex.test(password)
+        setIsValidPassword(ValidPassword)
+        const isMax: boolean = password.length <= 50
+        const isMin: boolean = password.length >= 6
+
+        if (ValidPassword && isMax && isMin) {
+            setIsValidPassword(true)
+            setErrorMessagePassword('')
+        } else if (!isMax) {
+            setIsValidPassword(false)
+            setErrorMessagePassword(import.meta.env.VITE_VALIDATION_PASSWORD_MAX)
+        } else if (!isMin) {
+            setIsValidPassword(false)
+            setErrorMessagePassword(import.meta.env.VITE_VALIDATION_PASSWORD_MIN)
+        }else {
+            setIsValidPassword(false)
+            setErrorMessagePassword(import.meta.env.VITE_VALIDATION_PASSWORD_PATTERN)
+        }
+    }
+    
+      const handlePasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
+        const newPassword: string = e.target.value
+        setPassword(newPassword)
+        validatePassword(newPassword)
+    }
+
   return (
     <div className="authProvider">
         {!isLogin ?
@@ -113,18 +170,7 @@ const AuthProvider: React.FC = () => {
                     isChecked={isChecked} 
                     setIsChecked={setIsChecked}/>
 
-                    {currentStep !== 3 ?
-                        <Button kind='button_with-shadow' color='#000000' width='208px' 
-                        height='36px' borderRadius='5px'
-                        fontSize='16px' fontWeight={500} lineHeight='20px'
-                        onClick={() => {
-                            currentStep === 2 ? 
-                                setCurrentStep(3)
-                            :
-                                setCurrentStep(2)}}>
-                            Далі
-                        </Button>
-                    :
+                    {currentStep === 3 &&
                         <Button kind='button_with-shadow' color='#000000' width='208px' 
                         height='36px' borderRadius='5px'
                         fontSize='16px' fontWeight={500} lineHeight='20px'
@@ -132,7 +178,7 @@ const AuthProvider: React.FC = () => {
                             Зареєструватися
                         </Button>
                     }
-                    <div className='authProvider__login-buttohttp://localhost:5173/about'>
+                    <div className='authProvider__login-button'>
                         <span className='authProvider__question'>Вже зареєстровані?</span>
                         <Button kind='button_secondary' onClick={() => navigate(LOGIN_PROVIDER_ROUTE, {replace: true})}
                         fontWeight={400} fontSize='10px' lineHeight='12px'>Увійдіть</Button>
@@ -158,15 +204,16 @@ const AuthProvider: React.FC = () => {
                     <div className="auth__registration-inputs auth__registration-inputs-login authProvider__inputs">
                         <Input kind='input_without-border' type='email' placeholder='Email'
                         value={email}
-                        onChange={e => setEmail(e.target.value)}/>
+                        onChange={e => handleEmailChange(e)}/>
+                        {!isValidEmail && <p style={{ color: 'red' }}>{errorMessageEmail}</p>}
                         <Input kind='input_without-border' type='password' placeholder='Пароль'
                         value={password}
-                        onChange={e => setPassword(e.target.value)}/>
-                        
+                        onChange={e => handlePasswordChange(e)}/>
+                        {!isValidPassword && <p style={{ color: 'red' }}>{errorMessagePassword}</p>}
                     </div>
                     <Button kind='button_with-shadow' color='#000000' width='208px' height='36px' borderRadius='5px'
                     fontSize='16px' fontWeight={600} lineHeight='20px'
-                    onClick={click}>
+                    onClick={click} disabled={!(isValidEmail && isValidPassword)}>
                         Вхід
                     </Button>
 

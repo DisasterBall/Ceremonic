@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import './css/button.css'
 
-interface ButtonProps extends React.ButtonHTMLAttributes<any> {
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     color?: string;
     kind: string;
     fontWeight?: number;
@@ -13,7 +13,6 @@ interface ButtonProps extends React.ButtonHTMLAttributes<any> {
     background?: string;
     border?: string;
     padding?: string;
-
     
 }
 

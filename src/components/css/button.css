@@ -47,6 +47,10 @@
     cursor: pointer;
     background: #2DCCD7;
 }
+.button_with-shadow:disabled{
+    background-color: #e7e7e7;
+    color: #8b8b8b;
+}
 .button_with-border{
     box-sizing: border-box;
     border: 1px solid #79747E;

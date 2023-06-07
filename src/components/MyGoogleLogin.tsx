@@ -3,7 +3,7 @@ import { GoogleLogin } from "@react-oauth/google"
 import jwtDecode from 'jwt-decode'
 import { userGoogleRegistration, userGoogleLogin, providerGoogleRegistration } from '../http/userAPI';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { LOGIN_ROUTE, REGISTRATION_PROVIDER_ROUTE, MY_WEDDING_ROUTE, LOGIN_PROVIDER_ROUTE, VENDOR_ROUTE } from '../utils/constRoutes';
+import { LOGIN_ROUTE, REGISTRATION_PROVIDER_ROUTE, LOGIN_PROVIDER_ROUTE, VENDOR_ROUTE, MY_WEDDING_SURVEY_ROUTE } from '../utils/constRoutes';
 import { useAppDispatch } from '../hook';
 import { addGoogleRegistration } from '../store/authProviderSlice';
 import { updateIsProvider } from '../store/userSlice';
@@ -44,7 +44,7 @@ const MyGoogleLogin: React.FC<ChildrenProps> = ({setCurrentStep}) => {
             else {
                 data = await userGoogleRegistration(decodeJWT.given_name, decodeJWT.family_name, tokenID);
             }
-            navigate(MY_WEDDING_ROUTE, {replace: true})
+            navigate(MY_WEDDING_SURVEY_ROUTE, {replace: true})
         } catch (e: any) {
             alert(e.response.data.message)
         }
